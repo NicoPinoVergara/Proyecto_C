@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Formulario de Contacto</title>
     <link rel="stylesheet" type="text/css" href="~/Styles.css" />
 
@@ -12,7 +13,9 @@
         <div class="container">
             <div>
                 <h1>Pagina 3 - Nicolas Pino</h1>
-                <img src="/img/logo.png" />
+                <div>
+                    <img src="/img/logo.png" />
+                </div>
             </div>
             <div class="form-field">
                 <label for="txtNombre">Nombre:</label>

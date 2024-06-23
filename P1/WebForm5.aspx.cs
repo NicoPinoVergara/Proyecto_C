@@ -11,21 +11,81 @@ namespace P1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                ViewState["expression"] = "";
+            }
         }
-        protected void Button_Calcular(object sender, EventArgs e)
+        protected void btn_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+
+            // Agregar el número presionado al visor
+            ViewState["expression"] += btn.Text;
+            txtVisor.Text = (string)ViewState["expression"];
+        }
+
+        protected void Selection_Change(object sender, EventArgs e)
+        {
+            string operatorSymbol = "";
+
+            switch (ColorList.SelectedValue)
+            {
+                case "suma":
+                    operatorSymbol = "+";
+                    break;
+                case "resta":
+                    operatorSymbol = "-";
+                    break;
+                case "multiplicacion":
+                    operatorSymbol = "*";
+                    break;
+                case "division":
+                    operatorSymbol = "/";
+                    break;
+            }
+
+            ViewState["expression"] += " " + operatorSymbol + " ";
+            txtVisor.Text = (string)ViewState["expression"];
+        }
+
+        protected void btnCalcular_Click(object sender, EventArgs e)
+        {
+            string expression = (string)ViewState["expression"];
             try
             {
-                double num1 = Convert.ToDouble(TextBoxValor1.Text);
-                double num2 = Convert.ToDouble(TextBoxValor2.Text);
-                string operacion = 
+                var result = EvaluateExpression(expression);
+                txtVisor.Text = result.ToString();
+                ViewState["expression"] = result.ToString();
             }
-            catch (Exception e)
+            catch (Exception exc)
             {
-                Console.WriteLine("Something went wrong.");
+                txtVisor.Text = "Error";
+                ViewState["expression"] = "";
             }
-
         }
+
+        private double EvaluateExpression(string expression)
+        {
+            var dataTable = new System.Data.DataTable();
+            var value = dataTable.Compute(expression, "");
+            return Convert.ToDouble(value);
+        }
+
+        protected void Volver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            // Limpiar el TextBox y la variable de estado
+            txtVisor.Text = "";
+            ViewState["expression"] = "";
+
+            // Desseleccionar cualquier elemento seleccionado en el DropDownList
+            ColorList.ClearSelection();
+        }
+
     }
 }

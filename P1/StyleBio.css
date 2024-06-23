@@ -1,0 +1,28 @@
+﻿body {
+    /*tipo de letra*/
+    font-family: Calibri, sans-serif;
+    /*color de fondo*/
+    background: #DBF9FC;
+}
+img {
+    display: block;
+    margin: auto;
+    background: lightblue;
+    border-radius: 80%;
+    width: 300px;
+    height: 300px;
+}
+p {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+h1 {
+    font-family: Algerian, sans-serif;
+    /*centrar texto*/
+    text-align: center;
+}
+h4 {
+    font-family: Algerian, sans-serif;
+    /*centrar texto*/
+    text-align: center;
+}

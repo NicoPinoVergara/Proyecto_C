@@ -14,6 +14,7 @@
             <h1>Pagina 4 - Nicolas Pino</h1>
             <div class="container">
             <div>
+                <img src="img/logo.png"/>
                 <h2>Calculadora de Notas (Eva+Epe)</h2>
                 <div>
                     <label for="EVA1">EVA1:</label>
